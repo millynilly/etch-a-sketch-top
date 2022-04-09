@@ -15,10 +15,27 @@
 
 <body>
     <h1>Etch-a-sketch</h1>
+
+    <div id="radios">
+        <label for="grey">
+            <input type="radio" name="effect" id="grey" value="random" checked>
+            Grey
+        </label>
+        <label for="random">
+            <input type="radio" name="effect" id="random" value="random">
+            Random colours
+        </label>
+        <label for="grey-scale">
+            <input type="radio" name="effect" id="grey-scale" value="grey-scale">   
+            Shading
+        </label>
+    </div>
+
     <div id="tools">
         <p id="instruction">Draw on the canvas with the mouse.</p>
         <button id="clear">New grid</button>       
     </div>
+
     <div id="container"></div>
 </body>
 

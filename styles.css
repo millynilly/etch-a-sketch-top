@@ -19,6 +19,12 @@ h1 { text-align: center; }
     font-size: .9rem;
 }
 
+#radios {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 24px;
+}
+
 #container {
     display: grid;
     width: 90vh;
@@ -27,7 +33,7 @@ h1 { text-align: center; }
     margin: auto;
 }
 
-.square {
+.grey {
     background-color: darkgray;    
 }
 

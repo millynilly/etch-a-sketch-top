@@ -32,7 +32,7 @@ function createGrid(size) {
     Needs to be here because grid divs are created anew each time*/
     squares.forEach( (sqr) => {
         sqr.addEventListener('mouseenter', () => {
-        sqr.classList.add('square')
+        sqr.classList.add('grey')
         })
     })
 }
