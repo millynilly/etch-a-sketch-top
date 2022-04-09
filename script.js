@@ -8,8 +8,12 @@ createGrid(16)
 
 /*Event listener for button*/
 btn.addEventListener('click', () => {
-    clearGrid()
-    createGrid(getSize())
+    
+    let size = getSize()
+
+    if (size !== null) {
+        clearGrid()
+        createGrid(size) }
 })
 
 
@@ -35,15 +39,18 @@ function createGrid(size) {
 
 
 function getSize() {
-    console.log('Get size')
-    return window.prompt('Enter grid size (number of squares per side) - max 100:')
     
+    let size = window.prompt('Enter grid size (number of squares per side) - max 100:')
+
+    if (size > 0 && size <= 100 || size === null) { return size }
+    
+    window.alert('Size must be a number between 1 and 100.')
+    return null
 }
 
 
 function clearGrid() {
     container.innerHTML = ''
-    console.log('Clear grid')
 }
 
 
