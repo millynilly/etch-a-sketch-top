@@ -1,13 +1,14 @@
 
 const container = document.querySelector('#container')
-const btn = document.querySelector('#clear')
+const btnNew = document.querySelector('#new')
+const btnClear = document.querySelector('#clear')
 
 
 createGrid(16)
 
 
-/*Event listener for button*/
-btn.addEventListener('click', () => {
+/*Event listeners for buttons*/
+btnNew.addEventListener('click', () => {
     
     let size = getSize()
 
@@ -16,8 +17,17 @@ btn.addEventListener('click', () => {
         createGrid(size) }
 })
 
+btnClear.addEventListener('click', () => {
+    let divs = document.querySelectorAll('#container div')
+    divs.forEach( (div) => {
+        div.style.backgroundColor = 'white'
+        div.setAttribute('data-colour', 'rgb(100%, 100%, 100%)')
+    })
+})
+
 
 function createGrid(size) {
+    
     
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`

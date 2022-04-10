@@ -35,7 +35,7 @@ h1 { text-align: center; }
     margin: auto;
 }
 
-#clear {
+button {
     font-family: 'Red hat mono';
     padding: 8px 16px;
     margin-bottom: 0 0 0 auto;
