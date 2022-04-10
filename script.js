@@ -4,8 +4,6 @@ const btnNew = document.querySelector('#new')
 const btnClear = document.querySelector('#clear')
 
 
-createGrid(16)
-
 
 /*Event listeners for buttons*/
 btnNew.addEventListener('click', () => {
@@ -19,6 +17,7 @@ btnNew.addEventListener('click', () => {
 
 btnClear.addEventListener('click', () => {
     let divs = document.querySelectorAll('#container div')
+
     divs.forEach( (div) => {
         div.style.backgroundColor = 'white'
         div.setAttribute('data-colour', 'rgb(100%, 100%, 100%)')
@@ -27,7 +26,6 @@ btnClear.addEventListener('click', () => {
 
 
 function createGrid(size) {
-    
     
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`
@@ -47,6 +45,7 @@ function createGrid(size) {
     squares.forEach( (sqr) => sqr.addEventListener('mouseenter', changeColour))
 }
 
+
 function changeColour() {
 
     const effect = document.querySelector('input[name="effect"]:checked').value
@@ -61,7 +60,6 @@ function changeColour() {
             break
         case 'grey-scale':
             colour = getGreyScale(current)
-            console.log(colour)
             this.setAttribute('data-colour', colour)
             break
     }
@@ -109,4 +107,4 @@ function getGreyScale(shade) {
 
 
 
-
+createGrid(16)
