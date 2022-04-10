@@ -18,13 +18,14 @@ btn.addEventListener('click', () => {
 
 
 function createGrid(size) {
-
+    
     container.style.gridTemplateColumns = `repeat(${size}, 1fr)`
     container.style.gridTemplateRows = `repeat(${size}, 1fr)`
 
     for (let i = 0; i < size * size; i++) {      
-        container.appendChild(document.createElement('div'))      
+        container.appendChild(document.createElement('div'))     
     }
+    document.q
 
     const squares = document.querySelectorAll('#container div')
 
@@ -32,7 +33,20 @@ function createGrid(size) {
     Needs to be here because grid divs are created anew each time*/
     squares.forEach( (sqr) => {
         sqr.addEventListener('mouseenter', () => {
-        sqr.classList.add('grey')
+            const effect = document.querySelector('input[name="effect"]:checked').value
+            
+            switch (effect) {
+                case 'grey':
+                    colour = 'darkgrey'
+                    break
+                case 'random':
+                    colour = getRandomColour()
+                    break
+                case 'grey-scale':
+                    colour = getGreyScale()
+                    break
+            }
+            sqr.style.backgroundColor = colour
         })
     })
 }
@@ -51,6 +65,23 @@ function getSize() {
 
 function clearGrid() {
     container.innerHTML = ''
+}
+
+
+function getRandomColour() {
+    let rgb = 'rgb('
+    
+    for (let i = 0; i < 3; i++) {
+        rgb += Math.floor((Math.random() * 256)).toString() + ', '
+    }
+    rgb = rgb.slice(0, -2) + ')'
+    
+    return rgb
+}
+
+
+function getGreyScale() {
+    return 'blue'
 }
 
 
