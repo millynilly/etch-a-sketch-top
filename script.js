@@ -25,30 +25,37 @@ function createGrid(size) {
     for (let i = 0; i < size * size; i++) {      
         container.appendChild(document.createElement('div'))     
     }
-    document.q
-
-    const squares = document.querySelectorAll('#container div')
-
+    
+    /*Create data attribute for use with shading effect. Needs to be
+    in rgb and % format so can't use backgroundColor property.*/
+    let divs = document.querySelectorAll('#container div')
+    divs.forEach( (div) => div.setAttribute('data-colour', 'rgb(100%, 100%, 100%)'))
+    
     /*Event listener for grid
     Needs to be here because grid divs are created anew each time*/
-    squares.forEach( (sqr) => {
-        sqr.addEventListener('mouseenter', () => {
-            const effect = document.querySelector('input[name="effect"]:checked').value
-            
-            switch (effect) {
-                case 'grey':
-                    colour = 'darkgrey'
-                    break
-                case 'random':
-                    colour = getRandomColour()
-                    break
-                case 'grey-scale':
-                    colour = getGreyScale()
-                    break
-            }
-            sqr.style.backgroundColor = colour
-        })
-    })
+    const squares = document.querySelectorAll('#container div')
+    squares.forEach( (sqr) => sqr.addEventListener('mouseenter', changeColour))
+}
+
+function changeColour() {
+
+    const effect = document.querySelector('input[name="effect"]:checked').value
+    const current = this.getAttribute('data-colour')
+
+    switch (effect) {
+        case 'grey':
+            colour = 'darkgrey'
+            break
+        case 'random':
+            colour = getRandomColour()       
+            break
+        case 'grey-scale':
+            colour = getGreyScale(current)
+            console.log(colour)
+            this.setAttribute('data-colour', colour)
+            break
+    }
+    this.style.backgroundColor = colour
 }
 
 
@@ -70,7 +77,7 @@ function clearGrid() {
 
 function getRandomColour() {
     let rgb = 'rgb('
-    
+
     for (let i = 0; i < 3; i++) {
         rgb += Math.floor((Math.random() * 256)).toString() + ', '
     }
@@ -80,8 +87,14 @@ function getRandomColour() {
 }
 
 
-function getGreyScale() {
-    return 'blue'
+function getGreyScale(shade) {
+    
+    /*Get rgb % & decreasee by 10*/
+    let n = shade.slice(4, 7)
+    n = n == 100 ? 90 : n.slice(0, 2) - 10
+    
+    /*Put new % back into rgb string*/
+    return `rgb(${n}%, ${n}%, ${n}%)`
 }
 
 
